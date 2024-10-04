@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+    background-color: whitesmoke;
+    padding: 0 20px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 70vh;
+}
+
+.title {
+    color: black;
+    font-size: 50px;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.search1 {
+    display: flex;
+}
+
+.search-bar {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 820px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.search-bar input {
+    display: block;
+    appearance: none; 
+    outline: none;
+    padding: 15px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+/* button */
+
+.button-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    gap: 15px;
+    margin-top: 10px;
+   
+}
+
+.btn {
+  background-color: black;
+  border-radius: 5px;
+  border-style: none;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  width: 22%;
+  min-height: 45px;
+}
+
+.btn:hover,
+.btn:focus {
+  opacity: 80%;
+}
+
+/* result card */
+
+.results {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.result {
+    width: 100%;
+    padding: 20px;
+    margin: 30px 0;
+    border: solid;
+    transition: all 0.3 ease;
+}
+
+
+.result:hover {
+    box-shadow: 0px 7px 30px 0px rgba(100, 100, 110, 0.2);
+}
+
+/* result inner */
+.result p {
+    color: darkgray;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.result a {
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    background-color: aliceblue;
+    background-color: rgb(180, 200, 250);
+
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: all 0.3 ease;
+}
+
+.result a:hover {
+    opacity: 80%;
+}
+
+.helper {
+    width: 100%;
+    text-align: center;
+    margin-top: -125px;
+}
