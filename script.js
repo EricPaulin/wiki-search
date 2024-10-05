@@ -19,6 +19,8 @@ randomButton.addEventListener("click", function () {
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
+    var searchTerm = input.value;
+
     // credits
     if (searchTerm == "whomadethis") {
         resultsCounter.textContent = '';
@@ -51,7 +53,7 @@ made by eric`
 
 
 /* fetch randomSearch */
-function randomSearch() {
+async function randomSearch() {
 
     var url = "https://en.wikipedia.org/w/api.php";
 
