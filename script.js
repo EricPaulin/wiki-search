@@ -6,15 +6,8 @@ const helperMessage = document.querySelector('.helper');
 
 const randomButton = document.getElementById('btn2');
 
+var searchTerm = "";
 var randomFlag = false;
-
-/* Generate Random Search */
-var randomOptions = ['dog', 'cat', 'sheep', 'orange', 'bandwidth',
-    'chalk', 'tax', 'Clemson University', 'ribbon', 'pupil',
-    'teacher', 'personality', 'recursion', 'tone', 'Upton Sinclair',
-    'snail', 'sisyphus', 'Washington', 'Alan Turing', 'adobe',
-    'L Hôpitals rule', 'taro', 'Oil tanker', 'Boston', 'Don Quixote',
-    'Antarctica', 'Manila', 'Impressionism', 'Demi-Glace', 'Pyotr Ilyich Tchaikovsky'];
 
 
 randomButton.addEventListener("click", function () {
@@ -26,8 +19,6 @@ randomButton.addEventListener("click", function () {
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    var searchTerm = input.value;
-
     // credits
     if (searchTerm == "whomadethis") {
         resultsCounter.textContent = '';
@@ -37,11 +28,19 @@ made by eric`
         return;
     }
 
-    // check if Random button pressed
+    // check randomButton flag
     if (randomFlag) {
-        searchTerm = randomOptions[Math.floor(Math.random() * randomOptions.length)];
-        input.value = searchTerm;
         randomFlag = false;
+
+        // promise pending
+        let temp = randomSearch();
+        // promise resolved
+        temp.then(function (result) {
+            input.value = result;
+            searchTerm = input.value;
+            searchWikipedia(searchTerm);
+        })
+        return;
     }
 
     // 'if' prevents search error
@@ -51,13 +50,48 @@ made by eric`
 });
 
 
+/* fetch randomSearch */
+function randomSearch() {
+
+    var url = "https://en.wikipedia.org/w/api.php";
+
+    var params = {
+        action: "query",
+        format: "json",
+        list: "random",
+        rnlimit: "100"
+    };
+
+    url = url + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+    return fetch(url)
+        .then(response => response.json())
+        .then(function (response) {
+            var randoms = response.query.random;
+
+            // skip unsuable searches 
+            for (var a in randoms) {
+                // if usable search found, return
+                if (!randoms[a].title.includes(":")) {
+                    searchTerm= randoms[a].title;
+                    break;
+                }
+                a++;
+            }
+            return searchTerm;
+        })
+        .catch(function (error) { console.log(error); });
+}
+
+
 /* fetch from Wikipedia */
 function searchWikipedia(searchTerm) {
-    const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=500&srsearch=${encodeURIComponent(searchTerm)}`;
+    var url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=500&srsearch=${encodeURIComponent(searchTerm)}`;
 
-    fetch(url).then
-        (response => response.json()).then
-        (data => {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
             displayResults(data.query.search)
         })
         .catch(error => alert('Error: ' + error))
@@ -97,7 +131,9 @@ c('')('')`;
         resultElement.innerHTML = `
                 <h2>${result.title}</h2>
                 <p>${result.snippet}</p>
-                <a href="https://en.wikipedia.org/?curid=${result.pageid}" target="_blank"> Read More </a>`;
+                <div> 
+                    <a href="https://en.wikipedia.org/?curid=${result.pageid}" target="_blank"> Read More </a>
+                </div>`;
         resultsContainer.appendChild(resultElement);
     });
 };
