@@ -18,11 +18,62 @@ header {
     align-items: center;
 }
 
+
+
+
+
+
+
+
+
+
+/* cameraForm popup         move to bottom later */
+
+.cameraForm {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:99999;
+
+    min-height: 50vh;
+
+    border: 5px solid black;
+    background-color: green;
+}
+
+.cameraOptions {
+    display: block;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: 35vh;
+
+    background-color: brown;
+}
+
+.cameraOptions button {
+    width: 30%;
+}
+
+
+
+
+
+/* page content */
+
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 70vh;
+    min-height: 80vh;
+    margin-top: 5%;
 }
 
 .title {
@@ -33,11 +84,7 @@ header {
     margin-bottom: 20px;
 }
 
-.search1 {
-    display: flex;
-}
-
-.search-bar {
+.searchbar {
     display: block;
     align-items: center;
     justify-content: center;
@@ -48,7 +95,7 @@ header {
     margin-bottom: 10px;
 }
 
-.search-bar input {
+.searchbar input {
     display: block;
     appearance: none; 
     outline: none;
@@ -59,7 +106,7 @@ header {
 
 /* button */
 
-.button-options {
+.buttonOptions {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,7 +159,7 @@ header {
 .result {
     width: 100%;
     padding: 20px;
-    margin: 30px 0;
+    margin: 20px 0;
     border: solid;
     transition: all 0.3 ease;
 }
@@ -155,7 +202,5 @@ header {
 }
 
 .helper {
-    width: 100%;
     text-align: center;
-    margin-top: -125px;
 }

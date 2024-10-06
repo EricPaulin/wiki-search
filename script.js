@@ -1,18 +1,91 @@
-const form = document.querySelector('.search-bar');
+const form = document.querySelector('.searchbar');
 const input = form.querySelector('input[type="search"]');
 const resultsContainer = document.querySelector('.results');
 const resultsCounter = document.querySelector('header p');
 const helperMessage = document.querySelector('.helper');
 
 const randomButton = document.getElementById('btn2');
+const cameraButton = document.getElementById('btn3');
+
+var numA = 0;
+var numB = 1;
 
 var searchTerm = "";
 var randomFlag = false;
 
+/* mouseOver messages */
+randomButton.addEventListener('mouseover', () => {
+    helperMessage.innerHTML = `
 
-randomButton.addEventListener("click", function () {
+            Feeling lucky?
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+});
+
+cameraButton.addEventListener('mouseover', () => {
+    helperMessage.innerHTML = `
+
+            Curious about a specific picture?
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+});
+
+
+/* onClick */
+helperMessage.addEventListener('click', function () {
+
+    numA = Math.floor(Math.random() * 50);
+    numB = Math.floor(Math.random() * 50);
+
+    // helper messages
+    if (numA == numB) {
+        helperMessage.innerHTML = `
+
+            please stop clicking me
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+    }
+    else {
+        helperMessage.innerHTML = `
+
+            hi my name is mips
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+    }
+});
+
+randomButton.addEventListener('click', function () {
     randomFlag = true;
 });
+
+
+
+
+
+
+
+/* cameraButton popup  */
+function openCameraForm() {
+    document.querySelector(".cameraForm").style.display = "flex";
+}
+
+function closeCameraForm() {
+    document.querySelector(".cameraForm").style.display = "none";
+}
+
+
+
+
+
+
 
 
 /* onSubmit */
@@ -33,6 +106,17 @@ made by eric`
     // check randomButton flag
     if (randomFlag) {
         randomFlag = false;
+
+        // curated random
+        numA = Math.floor(Math.random() * 100);
+        numB = Math.floor(Math.random() * 100);
+
+        if (numA == numB) {
+            input.value = "Raspberry Hangover";
+            searchTerm = input.value;
+            searchWikipedia(searchTerm);
+            return;
+        }
 
         // promise pending
         let temp = randomSearch();
@@ -76,7 +160,7 @@ async function randomSearch() {
             for (var a in randoms) {
                 // if usable search found, return
                 if (!randoms[a].title.includes(":")) {
-                    searchTerm= randoms[a].title;
+                    searchTerm = randoms[a].title;
                     break;
                 }
                 a++;
@@ -114,16 +198,14 @@ function displayResults(results) {
         // Special Message for no results
         if (results.length == 0) {
             helperMessage.innerHTML = `
-         _________________________
-        /                                            \\
-        |        No results found.      |
-        |               Try again              |
-         \\__________________________/
-                |/
+            Oops. No results found.
+            Try a different search.
+        /
 (\\  /)
 (  . .)
 c('')('')`;
         }
+
     }
 
     // Card for each Result

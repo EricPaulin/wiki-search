@@ -5,45 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>wiki finder</title>
+    <title>wiki4u</title>
 </head>
 
 <body>
 
     <div class="container">
-        <header>
-            <a href="./" class="title"> WIKI FINDER </a>
 
-            <form class="search-bar">
+
+        <div class="cameraForm">
+            <h3> Upload Your Image </h3>
+            <div class="cameraOptions">
+                <input type="file" class="imageInput" accept="image/*">
+                <button class="fileBtn" onclick="document.querySelector('.imageInput').click();"> Select File </button>
+                <button class="uploadBtn"> Analyze Image </button>
+                <button class="closeBtn" onclick="closeCameraForm()"> X </button>
+            </div>
+            <img src="" class="imagePreview">
+        </div>
+
+        <header>
+            <a href="./" class="title"> wiki4u </a>
+
+            <form class="searchbar">
                 <input type="search" placeholder="Search...">
-                <div class="button-options">
+                <div class="buttonOptions">
                     <button id="btn1" class="btn"> Search </button>
                     <button id="btn2" class="btn">
-                        <img src="./images/random-icon.svg"> 
+                        <img src="./images/random-icon.svg">
                     </button>
-                    <button id="btn3" class="btn" href="#">
-                        <img src="./images/camera-icon.svg"> 
+                    <button id="btn3" class="btn" type="button" onclick="openCameraForm()">
+                        <img src="./images/camera-icon.svg">
                     </button>
                 </div>
             </form>
             <p></p>
         </header>
-        <div class="results"></div>
-    </div>
 
-    <pre class="helper">
-        
-        _________________________
-        /                                            \
-        |     Try making a search    |
-        |        in the search bar       |
-         \__________________________/
-                |/
+
+        <div class="results"></div>
+        <pre class="helper">
+
+            Welcome to wiki4u
+            Type something in the search bar
+        /
 (\  /)
 (  . .)
-c('')('')
-    </pre>
-    
+c('')('')</pre>
+
+    </div>
+
     <script src="script.js"></script>
 </body>
 
