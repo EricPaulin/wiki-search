@@ -1,12 +1,12 @@
-wiki4u [v2.1]
+<p align="center" width="100%">
+  <img width="800" align="center" alt="Screenshot 2024-10-06 at 11 39 01 PM" src="https://github.com/user-attachments/assets/a1c7c2b3-ba1f-4e81-a7c6-fcfffb62cd61"> 
+</p>
 
-Wikipedia Clone App I made for fun and to relearn web development fundamentals (APIs, Responsive Design, JavaScript) and apply UX Design skills learned.
-I wanted to make a clean and simple design and added a little ASCII helper because it seemed like a fun way to help navigate users who may be confused.
-The aesthetic for the sitecame from my love of how computer UI looked in the 1980s. I thought it would be fun to recreate, and it fit will with my little mascot.
+### [What is wiki4u?]
+wiki4u is a Wikipedia clone coded using HTML, CSS, and JavaScript. It takes inspiration from the early computer UI and terminal view. The site allows user to seach any word and find its correlating Wikipeadia article along with any related searches. Users can also choose to randomly generate a search and its related topics as well. Upon loading the searches, the site displays the number of results, a blurb for each result, and a link to the Wikipeadia article if users wish to learn more. The site also features a little ASCII mascot helper named MIPS the rabbit who is just a silly little guy.
 
-Features
-  - Search for Wikipedia Articles
-  - Random Search Option [v2]
+### [Features]
+  - Search Wikipedia Articles ([MediaWiki](https://www.mediawiki.org/wiki/MediaWiki))
+  - Randomly Generated Searches
   - Responsive Design
-
-Made Using: HTML, CSS, JavaScript
+  - MIPS the rabbit
