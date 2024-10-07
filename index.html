@@ -5,40 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>wiki finder</title>
+    <title>wiki4u</title>
 </head>
 
 <body>
 
     <div class="container">
-        <header>
-            <a href="./" class="title"> WIKI FINDER </a>
 
-            <form class="search-bar">
+        <div class="infoMenu">
+            <div class="infoHeader">
+    
+                <button class="closeBtn" onclick="closeInfoMenu()"> X </button>
+            </div>
+            <h2> About wiki4u </h2>
+            <div> wiki4u is a 1980s style Wikipedia clone. </div>
+
+            <p> &lt;Search&gt; allows the lookup of Wikipedia articles and their related topics </p>
+            <p> &lt;?&gt; randomly generates a Wikipedia seaerch </p>
+            <p> &lt;i&gt; provides info about the current version </p>
+            <br/>
+            <div> version 2.1 </div>
+        </div>
+
+        <header>
+            <a href="./" class="title"> wiki4u </a>
+
+            <form class="searchbar">
                 <input type="search" placeholder="Search...">
-                <div class="button-options">
-                    <button id="btn1" class="btn"> Search </button>
-                    <button id="btn2" class="btn"> Random </button>
+                <div class="buttonOptions">
+                    <button id="btn1" class="btn"> &lt;Search&gt; </button>
+                    <button id="btn2" class="btn"> &lt;?&gt; </button>
+                    <button id="btn3" class="btn" type="button" onclick="openInfoMenu()"> &lt;i&gt; </button>
                 </div>
             </form>
             <p></p>
         </header>
-        <div class="results"></div>
-    </div>
 
-    <pre class="helper">
-        
-        _________________________
-        /                                            \
-        |     Try making a search    |
-        |        in the search bar       |
-         \__________________________/
-                |/
+
+        <div class="results"></div>
+        <pre class="helper">
+
+            
+            Welcome to wiki4u
+        /
 (\  /)
 (  . .)
-c('')('')
-    </pre>
-    
+c('')('')</pre>
+
+    </div>
+
     <script src="script.js"></script>
 </body>
 

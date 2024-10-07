@@ -1,25 +1,80 @@
-const form = document.querySelector('.search-bar');
+const form = document.querySelector('.searchbar');
 const input = form.querySelector('input[type="search"]');
 const resultsContainer = document.querySelector('.results');
 const resultsCounter = document.querySelector('header p');
 const helperMessage = document.querySelector('.helper');
 
 const randomButton = document.getElementById('btn2');
+const infoButton = document.getElementById('btn3');
 
+var numA = 0;
+var numB = 1;
+
+var searchTerm = "";
 var randomFlag = false;
 
-/* Generate Random Search */
-var randomOptions = ['dog', 'cat', 'sheep', 'orange', 'bandwidth',
-    'chalk', 'tax', 'Clemson University', 'ribbon', 'pupil',
-    'teacher', 'personality', 'recursion', 'tone', 'Upton Sinclair',
-    'snail', 'sisyphus', 'Washington', 'Alan Turing', 'adobe',
-    'L Hôpitals rule', 'taro', 'Oil tanker', 'Boston', 'Don Quixote',
-    'Antarctica', 'Manila', 'Impressionism', 'Demi-Glace', 'Pyotr Ilyich Tchaikovsky'];
+/* mouseOver messages */
+randomButton.addEventListener('mouseover', () => {
+    helperMessage.innerHTML = `
+
+            Feeling lucky?
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+});
+
+infoButton.addEventListener('mouseover', () => {
+    helperMessage.innerHTML = `
+
+            Need some help?
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+});
 
 
-randomButton.addEventListener("click", function () {
+/* onClick */
+helperMessage.addEventListener('click', function () {
+
+    numA = Math.floor(Math.random() * 50);
+    numB = Math.floor(Math.random() * 50);
+
+    // helper messages
+    if (numA == numB) {
+        helperMessage.innerHTML = `
+
+            please stop clicking me
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+    }
+    else {
+        helperMessage.innerHTML = `
+
+            hi my name is mips
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+    }
+});
+
+randomButton.addEventListener('click', function () {
     randomFlag = true;
 });
+
+
+/* helpMenu popup */
+function openInfoMenu() {
+    document.querySelector(".infoMenu").style.display = "flex";
+}
+
+function closeInfoMenu() {
+    document.querySelector(".infoMenu").style.display = "none";
+}
 
 
 /* onSubmit */
@@ -32,16 +87,35 @@ form.addEventListener('submit', function (event) {
     if (searchTerm == "whomadethis") {
         resultsCounter.textContent = '';
         helperMessage.innerHTML = `
-   ʕ •ᴥ• ʔ	
+ʕ •ᴥ• ʔ	
 made by eric`
         return;
     }
 
-    // check if Random button pressed
+    // check randomButton flag
     if (randomFlag) {
-        searchTerm = randomOptions[Math.floor(Math.random() * randomOptions.length)];
-        input.value = searchTerm;
         randomFlag = false;
+
+        // curated random
+        numA = Math.floor(Math.random() * 100);
+        numB = Math.floor(Math.random() * 100);
+
+        if (numA == numB) {
+            input.value = "Raspberry Hangover";
+            searchTerm = input.value;
+            searchWikipedia(searchTerm);
+            return;
+        }
+
+        // promise pending
+        let temp = randomSearch();
+        // promise resolved
+        temp.then(function (result) {
+            input.value = result;
+            searchTerm = input.value;
+            searchWikipedia(searchTerm);
+        })
+        return;
     }
 
     // 'if' prevents search error
@@ -51,13 +125,48 @@ made by eric`
 });
 
 
+/* fetch randomSearch */
+async function randomSearch() {
+
+    var url = "https://en.wikipedia.org/w/api.php";
+
+    var params = {
+        action: "query",
+        format: "json",
+        list: "random",
+        rnlimit: "100"
+    };
+
+    url = url + "?origin=*";
+    Object.keys(params).forEach(function (key) { url += "&" + key + "=" + params[key]; });
+
+    return fetch(url)
+        .then(response => response.json())
+        .then(function (response) {
+            var randoms = response.query.random;
+
+            // skip unsuable searches 
+            for (var a in randoms) {
+                // if usable search found, return
+                if (!randoms[a].title.includes(":")) {
+                    searchTerm = randoms[a].title;
+                    break;
+                }
+                a++;
+            }
+            return searchTerm;
+        })
+        .catch(function (error) { console.log(error); });
+}
+
+
 /* fetch from Wikipedia */
 function searchWikipedia(searchTerm) {
-    const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=500&srsearch=${encodeURIComponent(searchTerm)}`;
+    var url = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=500&srsearch=${encodeURIComponent(searchTerm)}`;
 
-    fetch(url).then
-        (response => response.json()).then
-        (data => {
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
             displayResults(data.query.search)
         })
         .catch(error => alert('Error: ' + error))
@@ -78,16 +187,14 @@ function displayResults(results) {
         // Special Message for no results
         if (results.length == 0) {
             helperMessage.innerHTML = `
-         _________________________
-        /                                            \\
-        |        No results found.      |
-        |               Try again              |
-         \\__________________________/
-                |/
+            Oops. No results found.
+            Try a different search.
+        /
 (\\  /)
 (  . .)
 c('')('')`;
         }
+
     }
 
     // Card for each Result
@@ -97,7 +204,9 @@ c('')('')`;
         resultElement.innerHTML = `
                 <h2>${result.title}</h2>
                 <p>${result.snippet}</p>
-                <a href="https://en.wikipedia.org/?curid=${result.pageid}" target="_blank"> Read More </a>`;
+                <div> 
+                    <a href="https://en.wikipedia.org/?curid=${result.pageid}" target="_blank"> Read More </a>
+                </div>`;
         resultsContainer.appendChild(resultElement);
     });
 };
