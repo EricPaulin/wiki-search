@@ -12,16 +12,19 @@
 
     <div class="container">
 
-
-        <div class="cameraForm">
-            <h3> Upload Your Image </h3>
-            <div class="cameraOptions">
-                <input type="file" class="imageInput" accept="image/*">
-                <button class="fileBtn" onclick="document.querySelector('.imageInput').click();"> Select File </button>
-                <button class="uploadBtn"> Analyze Image </button>
-                <button class="closeBtn" onclick="closeCameraForm()"> X </button>
+        <div class="infoMenu">
+            <div class="infoHeader">
+    
+                <button class="closeBtn" onclick="closeInfoMenu()"> X </button>
             </div>
-            <img src="" class="imagePreview">
+            <h2> About wiki4u </h2>
+            <div> wiki4u is a 1980s style Wikipedia clone. </div>
+
+            <p> &lt;Search&gt; allows the lookup of Wikipedia articles and their related topics </p>
+            <p> &lt;?&gt; randomly generates a Wikipedia seaerch </p>
+            <p> &lt;i&gt; provides info about the current version </p>
+            <br/>
+            <div> version 2.1 </div>
         </div>
 
         <header>
@@ -30,13 +33,9 @@
             <form class="searchbar">
                 <input type="search" placeholder="Search...">
                 <div class="buttonOptions">
-                    <button id="btn1" class="btn"> Search </button>
-                    <button id="btn2" class="btn">
-                        <img src="./images/random-icon.svg">
-                    </button>
-                    <button id="btn3" class="btn" type="button" onclick="openCameraForm()">
-                        <img src="./images/camera-icon.svg">
-                    </button>
+                    <button id="btn1" class="btn"> &lt;Search&gt; </button>
+                    <button id="btn2" class="btn"> &lt;?&gt; </button>
+                    <button id="btn3" class="btn" type="button" onclick="openInfoMenu()"> &lt;i&gt; </button>
                 </div>
             </form>
             <p></p>
@@ -46,8 +45,8 @@
         <div class="results"></div>
         <pre class="helper">
 
+            
             Welcome to wiki4u
-            Type something in the search bar
         /
 (\  /)
 (  . .)

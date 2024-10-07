@@ -5,7 +5,7 @@ const resultsCounter = document.querySelector('header p');
 const helperMessage = document.querySelector('.helper');
 
 const randomButton = document.getElementById('btn2');
-const cameraButton = document.getElementById('btn3');
+const infoButton = document.getElementById('btn3');
 
 var numA = 0;
 var numB = 1;
@@ -24,10 +24,10 @@ randomButton.addEventListener('mouseover', () => {
 c('')('')`;
 });
 
-cameraButton.addEventListener('mouseover', () => {
+infoButton.addEventListener('mouseover', () => {
     helperMessage.innerHTML = `
 
-            Curious about a specific picture?
+            Need some help?
         /
 (\\  /)
 (  . .)
@@ -67,25 +67,14 @@ randomButton.addEventListener('click', function () {
 });
 
 
-
-
-
-
-
-/* cameraButton popup  */
-function openCameraForm() {
-    document.querySelector(".cameraForm").style.display = "flex";
+/* helpMenu popup */
+function openInfoMenu() {
+    document.querySelector(".infoMenu").style.display = "flex";
 }
 
-function closeCameraForm() {
-    document.querySelector(".cameraForm").style.display = "none";
+function closeInfoMenu() {
+    document.querySelector(".infoMenu").style.display = "none";
 }
-
-
-
-
-
-
 
 
 /* onSubmit */
@@ -98,7 +87,7 @@ form.addEventListener('submit', function (event) {
     if (searchTerm == "whomadethis") {
         resultsCounter.textContent = '';
         helperMessage.innerHTML = `
-   ʕ •ᴥ• ʔ	
+ʕ •ᴥ• ʔ	
 made by eric`
         return;
     }
