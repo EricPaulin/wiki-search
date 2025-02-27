@@ -34,15 +34,26 @@ infoButton.addEventListener('mouseover', () => {
 c('')('')`;
 });
 
+helperMessage.addEventListener('mouseover', () => {
+    helperMessage.innerHTML = `
+
+        Hover over icons for some information.
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+});
+
+
 
 /* onClick */
 helperMessage.addEventListener('click', function () {
 
-    numA = Math.floor(Math.random() * 50);
-    numB = Math.floor(Math.random() * 50);
+    // randomly generate number 1 - 10
+    randomNum = Math.floor(Math.random() * 50) + 1;
 
     // helper messages
-    if (numA == numB) {
+    if (randomNum == 50) {
         helperMessage.innerHTML = `
 
             please stop clicking me
@@ -51,10 +62,19 @@ helperMessage.addEventListener('click', function () {
 (  . .)
 c('')('')`;
     }
-    else {
+    else if (randomNum > 5){
         helperMessage.innerHTML = `
 
             hi my name is mips
+        /
+(\\  /)
+(  . .)
+c('')('')`;
+    }
+    else {
+        helperMessage.innerHTML = `
+
+        mips is also a CPU architecture 
         /
 (\\  /)
 (  . .)
