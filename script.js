@@ -34,26 +34,15 @@ infoButton.addEventListener('mouseover', () => {
 c('')('')`;
 });
 
-helperMessage.addEventListener('mouseover', () => {
-    helperMessage.innerHTML = `
-
-        Hover over icons for some information.
-        /
-(\\  /)
-(  . .)
-c('')('')`;
-});
-
-
 
 /* onClick */
 helperMessage.addEventListener('click', function () {
 
-    // randomly generate number 1 - 10
-    randomNum = Math.floor(Math.random() * 50) + 1;
+    // randomly generate number 1 - 100
+    randomNum = Math.floor(Math.random() * 100) + 1;
 
     // helper messages
-    if (randomNum == 50) {
+    if (randomNum == 100) {
         helperMessage.innerHTML = `
 
             please stop clicking me
@@ -62,7 +51,7 @@ helperMessage.addEventListener('click', function () {
 (  . .)
 c('')('')`;
     }
-    else if (randomNum > 5){
+    else if (randomNum > 10){
         helperMessage.innerHTML = `
 
             hi my name is mips
